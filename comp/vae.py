@@ -38,7 +38,7 @@ class Encoder(nn.Module):
         self.res1 = ResBlock(128, 128, kernel_size=3)
         self.res2 = ResBlock(128, 128, kernel_size=3)
         self.res3 = ResBlock(128, 128, kernel_size=3)
-        #TODO(Todd): find out if these should be residual blocks
+        # TODO(Todd): find out if these should be residual blocks
         self.conv5 = nn.Conv2d(128, kernel_size=3)
         self.conv6 = nn.Conv2d(128, kernel_size=3)
         self.conv7 = nn.Conv2d(96, kernel_size=5, stride=2)
