@@ -11,13 +11,13 @@ requirements = ['argh',]
 
 
 COMMANDS = [
-    'greet = starter.cli:greet',
+    'greet = comp.cli:greet',
 ]
 
 
 setup(
-    author="",
-    author_email="",
+    author="Todd Young",
+    author_email="youngmt1@ornl.gov",
     python_requires='>=3.6',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
@@ -34,9 +34,9 @@ setup(
     license="MIT license",
     long_description=readme,
     include_package_data=True,
-    keywords='starter',
-    name='starter',
-    packages=find_packages(include=['starter', 'starter.*']),
+    keywords='comp',
+    name='comp',
+    packages=find_packages(include=['comp', 'comp.*']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
