@@ -1,4 +1,4 @@
-<h1>Compression<img src='https://github.com/yngtodd/comp/blob/main/img/snek.png' align='right' width='180' height='104'></h1>
+<h1>Compression<img src='https://github.com/yngtodd/compression/blob/main/img/snek.png' align='right' width='180' height='104'></h1>
 
 #### Setup
 ```
