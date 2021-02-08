@@ -20,16 +20,23 @@ class ResBlock(nn.Module):
         self.conv2 = nn.Conv2d(
             out_channels, out_channels, kernel_size, padding=1
         )
+        self.leaky = nn.LeakyReLU()
 
     def forward(self, x):
         residual = x
         x = self.conv1(x)
+        x = self.leaky(x)
         x = self.conv2(x)
         x += residual
         return x
 
 
 class Encoder(nn.Module):
+    """Compression encoder
+
+    Two initial layers of convolution, downsampling with stride 2,
+    followed by three residual blocks, and finally, a convolution layer.
+    """
 
     def __init__(self):
         super().__init__()
@@ -38,23 +45,16 @@ class Encoder(nn.Module):
         self.res1 = ResBlock(128, 128, kernel_size=3)
         self.res2 = ResBlock(128, 128, kernel_size=3)
         self.res3 = ResBlock(128, 128, kernel_size=3)
-        # TODO(Todd): find out if these should be residual blocks
-        self.conv5 = nn.Conv2d(128, kernel_size=3)
-        self.conv6 = nn.Conv2d(128, kernel_size=3)
-        self.conv7 = nn.Conv2d(96, kernel_size=5, stride=2)
+        self.conv3 = nn.Conv2d(128, 96, kernel_size=5, stride=2)
         self.leaky = nn.LeakyReLU()
 
     def forward(self, x):
         x = self.leaky(self.conv1(x))
-        residual1 = self.leaky(self.conv2(x))
-        residual2 = self.res1(x)
-        x = self.res2(self.leaky(residual1))
+        x = self.leaky(self.conv2(x))
+        x = self.res1(x)
+        x = self.res2(x)
         x = self.res3(x)
-        residual2 = torch.sum(x, res1)
-        x = self.conv5(res2)
-        x = self.conv6(x)
-        x = torch.sum(x, res2)
-        x = self.conv7(x)
+        x = self.conv3(x)
         return x.round().int()
 
 
@@ -62,3 +62,5 @@ class Decoder(nn.Module):
 
     def __init__(self):
         super().__init__()
+        # TODO(Todd)
+        raise NotImplementedError()
