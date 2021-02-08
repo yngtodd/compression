@@ -7,7 +7,7 @@ class ResBlock(nn.Module):
 
     def __init__(self, in_channels, out_channels, kernel_size):
         super().__init__()
-        #TODO(Todd): determine padding amount.
+        # TODO(Todd): determine padding amount.
         # From Figure 2: the second convolution layer
         # nn.Conv2d(64, 128, 5, stride=2) would have an output
         # torch.Size([1, 128, 62, 62]).
@@ -18,7 +18,7 @@ class ResBlock(nn.Module):
             in_channels, out_channels, kernel_size, padding=1
         )
         self.conv2 = nn.Conv2d(
-            out_channels, out_channels, kernel_size, padding=1 
+            out_channels, out_channels, kernel_size, padding=1
         )
 
     def forward(self, x):
